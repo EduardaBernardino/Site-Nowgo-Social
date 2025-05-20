@@ -150,10 +150,6 @@
                                 <li class="with-megamenu has-menu-child-item">
                                     <a href="course-with-sidebar.html">Cursos</a>                                   
                                 </li>
-
-                                <li class="with-megamenu has-menu-child-item">
-                                    <a href="become-a-teacher.html">Torne-se um professor</a>                                   
-                                </li>
                                                                                                                           
                                 <li class="with-megamenu has-menu-child-item">
                                     <a href="event-sidebar.html">Eventos</a>                                   
@@ -165,21 +161,24 @@
                             </ul>
                         </nav>
                     </div>
-                    <div class="header-right">                     
+                    <div class="header-right"> 
+
                     <!-- Navbar Icons -->
                     <div style="position: relative; display: inline-block;">
                         <form onsubmit="return submitSearch()" style="position: relative; max-width: 100%; margin-right: 15px; display: inline-block;">
                             <input id="searchInput" type="text" placeholder="Pesquisar"
-                                style="width: 0; opacity: 0; transition: all 0.3s ease; padding-right: 40px; height: 40px; border: 2px solid white; border-radius: 20px; background-color: transparent; color: white;"
+                                style="width: 0; opacity: 0; transition: all 0.3s ease; padding-right: 40px; height: 40px; border: 2px solid white; border-radius: 20px; background-color: transparent; color: inherit; outline: none;"
                                 onfocus="this.style.borderColor = '#3f8cff'" 
                                 onblur="if(this.value === '') this.style.borderColor = 'white';">
                             
                             <button type="button" onclick="toggleSearch()" 
                                 style="position: absolute; right: 0; top: 0; height: 100%; border: none; background: transparent; padding: 0 10px; cursor: pointer;">
-                                <i class="feather-search" style="color: white;"></i>
+                                <i class="feather-search" style="background: linear-gradient(45deg, #3f8cff, #800080); -webkit-background-clip: text; color: transparent;"></i>
                             </button>
                         </form>
                     </div>
+                    
+                    
                     
                     
 
@@ -490,7 +489,6 @@
                                             <li><a href="profile.html">Profile</a></li>
                                             <li><a href="contact.html">Contact Us</a></li>
                                             <li><a href="become-a-teacher.html">Become a Teacher</a></li>
-                                            <li><a href="instructor.html">Instructor</a></li>
                                             <li><a href="faqs.html">FAQS</a></li>
                                             <li><a href="privacy-policy.html">Privacy Policy</a></li>
                                             <li><a href="404.html">404 Page</a></li>
@@ -830,13 +828,10 @@
         <div class="swiper rbt-swiper-thumb rbtmySwiperThumb">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="assets/images/banner/banner-small-01.png" alt="Banner Images">
                 </div>
                 <div class="swiper-slide">
-                    <img src="assets/images/banner/banner-small-02.png" alt="Banner Images">
                 </div>
                 <div class="swiper-slide">
-                    <img src="assets/images/banner/banner-small-03.png" alt="Banner Images">
                 </div>
             </div>
         </div>
@@ -849,26 +844,24 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6">
                     <div class="video-popup-wrapper">
-                        <img class="w-100 rbt-radius" src="assets/images/others/video-06.jpg" alt="Video Images">
-                        <a class="rbt-btn rounded-player popup-video position-to-top rbtplayer" href="https://www.youtube.com/watch?v=nA1Aqp0sPQo">
-                            <span><i class="feather-play"></i></span>
-                        </a>
-
+                        <video class="w-100 rbt-radius" autoplay muted loop playsinline>
+                            <source src="assets/videos/Blife.mp4" type="video/mp4">                       
+                        </video>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="inner pl--50 pl_lg--0 pl_md--0 pl_sm--0">
                         <div class="section-title text-start">
-                            <h4 class="title">Build your Career Life.</h4>
-                            <p class="description mt--30">Far far away, behind the word mountains, far from the
-                                countries Vokalia and Consonantia, there live the blind texts.</p>
+                            <h4 class="title">Construa sua jornada profissional.</h4>
+                            <p class="description mt--30">Muito além das salas de aula tradicionais, nossa plataforma oferece uma nova forma de aprender,
+                                 feita para acompanhar você em cada etapa da sua carreira.</p>
                             <div class="rbt-feature-wrapper mt--40">
                                 <div class="rbt-feature feature-style-1 align-items-center">
                                     <div class="icon bg-pink-opacity">
                                         <i class="feather-heart"></i>
                                     </div>
                                     <div class="feature-content">
-                                        <h6 class="feature-title">Flexible Classes</h6>
+                                        <h6 class="feature-title"> Aulas flexíveis e inteligentes</h6>
                                     </div>
                                 </div>
 
@@ -877,7 +870,7 @@
                                         <i class="feather-book"></i>
                                     </div>
                                     <div class="feature-content">
-                                        <h6 class="feature-title">Learn From Anywhere</h6>
+                                        <h6 class="feature-title">Estude onde e quando quiser</h6>
                                     </div>
                                 </div>
 
@@ -886,7 +879,7 @@
                                         <i class="feather-monitor"></i>
                                     </div>
                                     <div class="feature-content">
-                                        <h6 class="feature-title">Experienced Teacher's service.</h6>
+                                        <h6 class="feature-title">Conteúdo para impulsionar sua carreira</h6>
                                     </div>
                                 </div>
                             </div>
@@ -897,104 +890,6 @@
         </div>
     </div>
     <!-- End Button Area  -->
-
-    <!-- Start Category Area  -->
-    <div class="rbt-category-area bg-color-white rbt-section-gapTop">
-        <div class="container">
-            <div class="row g-5">
-                <!-- Start Service Grid  -->
-                <div class="col-lg-2 col-xl-2 col-xxl-2 col-md-3 col-sm-4 col-6">
-                    <div class="service-card service-card-5 variation-2">
-                        <div class="inner">
-                            <div class="icon">
-                                <a href="#"><img src="assets/images/category/image/web-design.jpg" alt="Shape Images"></a>
-                            </div>
-                            <div class="content">
-                                <h6 class="title"><a href="#">Chemistry</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Service Grid  -->
-
-                <!-- Start Service Grid  -->
-                <div class="col-lg-2 col-xl-2 col-xxl-2 col-md-3 col-sm-4 col-6">
-                    <div class="service-card service-card-5 variation-2">
-                        <div class="inner">
-                            <div class="icon">
-                                <a href="#"><img src="assets/images/category/image/graphic-design.jpg" alt="Shape Images"></a>
-                            </div>
-                            <div class="content">
-                                <h6 class="title"><a href="#">Graphic Design</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Service Grid  -->
-
-                <!-- Start Service Grid  -->
-                <div class="col-lg-2 col-xl-2 col-xxl-2 col-md-3 col-sm-4 col-6">
-                    <div class="service-card service-card-5 variation-2">
-                        <div class="inner">
-                            <div class="icon">
-                                <a href="#"><img src="assets/images/category/image/software.jpg" alt="Shape Images"></a>
-                            </div>
-                            <div class="content">
-                                <h6 class="title"><a href="#">Software</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Service Grid  -->
-
-                <!-- Start Service Grid  -->
-                <div class="col-lg-2 col-xl-2 col-xxl-2 col-md-3 col-sm-4 col-6">
-                    <div class="service-card service-card-5 variation-2">
-                        <div class="inner">
-                            <div class="icon">
-                                <a href="#"><img src="assets/images/category/image/mobile.jpg" alt="Shape Images"></a>
-                            </div>
-                            <div class="content">
-                                <h6 class="title"><a href="#">Mobile App</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Service Grid  -->
-
-                <!-- Start Service Grid  -->
-                <div class="col-lg-2 col-xl-2 col-xxl-2 col-md-3 col-sm-4 col-6">
-                    <div class="service-card service-card-5 variation-2">
-                        <div class="inner">
-                            <div class="icon">
-                                <a href="#"><img src="assets/images/category/image/finance.jpg" alt="Shape Images"></a>
-                            </div>
-                            <div class="content">
-                                <h6 class="title"><a href="#">Finance</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Service Grid  -->
-
-                <!-- Start Service Grid  -->
-                <div class="col-lg-2 col-xl-2 col-xxl-2 col-md-3 col-sm-4 col-6">
-                    <div class="service-card service-card-5 variation-2">
-                        <div class="inner">
-                            <div class="icon">
-                                <a href="#"><img src="assets/images/category/image/arts.jpg" alt="Shape Images"></a>
-                            </div>
-                            <div class="content">
-                                <h6 class="title"><a href="#">Art & Humanities</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Service Grid  -->
-            </div>
-        </div>
-    </div>
-    <!-- End Category Area  -->
 
     <!-- Start Our Banner Area  -->
     <div class="rbt-banner-area rbt-section-gapTop">
@@ -1057,8 +952,7 @@
                 <div class="col-lg-12">
                     <div class="section-title text-center">
                         <h2 class="title">Quem somos</h2>
-                        <p class="description mt--30">Far far away, behind the word mountains, far from the
-                            countries Vokalia and Consonantia, there live the blind texts.</p>
+                        <p class="description mt--30">Somos uma plataforma de cursos online práticos para quem aprende no próprio ritmo.</p>
                     </div>
                 </div>
             </div>
@@ -1070,8 +964,7 @@
                                 <a href="#" class="nav-link tab-button active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" role="tab" aria-controls="home" aria-selected="true">
                                     <div class="tab">
                                         <h4 class="title">Missão</h4>
-                                        <p class="description">Use Doob template you can build a corporate
-                                            website a short time.</p>
+                                        <p class="description">Oferecer educação prática, acessível e eficiente para aprendizes independentes.</p>
                                     </div>
                                 </a>
                             </li>
@@ -1080,8 +973,7 @@
                                 <a href="#" class="nav-link tab-button" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" role="tab" aria-controls="profile" aria-selected="false">
                                     <div class="tab">
                                         <h4 class="title">Visão</h4>
-                                        <p class="description">Use Doob template you can build a corporate
-                                            website a short time.</p>
+                                        <p class="description">Transformar o aprendizado digital com conteúdos simples, diretos e eficazes.</p>
                                     </div>
                                 </a>
                             </li>
@@ -1090,8 +982,7 @@
                                 <a href="#" class="nav-link tab-button" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" role="tab" aria-controls="contact" aria-selected="false">
                                     <div class="tab">
                                         <h4 class="title">Valores</h4>
-                                        <p class="description">Use Doob template you can build a corporate
-                                            website a short time.</p>
+                                        <p class="description">Acreditamos em autonomia, clareza, eficiência, inovação e acessibilidade sempre.</p>
                                     </div>
                                 </a>
                             </li>
@@ -1103,18 +994,18 @@
                     <div class="tab-content">
                         <div class="tab-pane fade advance-tab-content-1 active show" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <div class="thumbnail">
-                                <img src="assets/images/tab/tabs-03.jpg" alt="advance-tab-image">
+                                <img src="assets/images/about/miabout.png" alt="advance-tab-image">
                             </div>
 
                         </div>
                         <div class="tab-pane fade advance-tab-content-1" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                             <div class="thumbnail">
-                                <img src="assets/images/tab/tabs-02.jpg" alt="advance-tab-image">
+                                <img src="assets/images/about/viabout.png" alt="advance-tab-image">
                             </div>
                         </div>
                         <div class="tab-pane fade advance-tab-content-1" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                             <div class="thumbnail">
-                                <img src="assets/images/tab/tabs-01.jpg" alt="advance-tab-image">
+                                <img src="assets/images/about/vaabout.png" alt="advance-tab-image">
                             </div>
                         </div>
                     </div>
@@ -1159,7 +1050,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                     </div>
-                                    <span class="rating-count"> (15 Reviews)</span>
+                                    <span class="rating-count"> (15 Comentários)</span>
                                 </div>
                                 <div class="rbt-bookmark-btn">
                                     <a class="rbt-round-btn" title="Bookmark" href="#"><i
@@ -1167,16 +1058,15 @@
                                 </div>
                             </div>
 
-                            <h4 class="rbt-card-title"><a href="course-details.html">React Front To Back</a>
+                            <h4 class="rbt-card-title"><a href="course-details.html">React do básico ao avançado</a>
                             </h4>
 
                             <ul class="rbt-meta">
-                                <li><i class="feather-book"></i>12 Lessons</li>
-                                <li><i class="feather-users"></i>50 Students</li>
+                                <li><i class="feather-book"></i>12 Lições</li>
+                                <li><i class="feather-users"></i>50 Alunos</li>
                             </ul>
 
-                            <p class="rbt-card-text">It is a long established fact that a reader will be
-                                distracted.</p>
+                            <p class="rbt-card-text">Entenda os conceitos de React e como aplicar em projetos reais.</p>
                             <div class="rbt-author-meta mb--10">
                                 <div class="rbt-avater">
                                     <a href="#">
@@ -1192,8 +1082,8 @@
                                     <span class="current-price">$60</span>
                                     <span class="off-price">$120</span>
                                 </div>
-                                <a class="rbt-btn-link" href="course-details.html">Learn
-                                    More<i class="feather-arrow-right"></i></a>
+                                <a class="rbt-btn-link" href="course-details.html">Saiba
+                                    Mais<i class="feather-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1218,22 +1108,21 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                     </div>
-                                    <span class="rating-count"> (15 Reviews)</span>
+                                    <span class="rating-count"> (15 Comentários)</span>
                                 </div>
                                 <div class="rbt-bookmark-btn">
                                     <a class="rbt-round-btn" title="Bookmark" href="#"><i
                                             class="feather-bookmark"></i></a>
                                 </div>
                             </div>
-                            <h4 class="rbt-card-title"><a href="course-details.html">PHP Beginner Advanced</a>
+                            <h4 class="rbt-card-title"><a href="course-details.html">PHP para iniciantes</a>
                             </h4>
                             <ul class="rbt-meta">
-                                <li><i class="feather-book"></i>12 Lessons</li>
-                                <li><i class="feather-users"></i>50 Students</li>
+                                <li><i class="feather-book"></i>12 Lições</li>
+                                <li><i class="feather-users"></i>50 Alunos</li>
                             </ul>
 
-                            <p class="rbt-card-text">It is a long established fact that a reader will be
-                                distracted.</p>
+                            <p class="rbt-card-text">Aprenda PHP, do básico ao avançado, para criar sites dinâmicos e robustos.</p>
                             <div class="rbt-author-meta mb--10">
                                 <div class="rbt-avater">
                                     <a href="#">
@@ -1244,13 +1133,13 @@
                                     By <a href="profile.html">Angela</a> In <a href="#">Development</a>
                                 </div>
                             </div>
-                            <div class="rbt-card-bottom">
+                           <div class="rbt-card-bottom">
                                 <div class="rbt-price">
                                     <span class="current-price">$60</span>
                                     <span class="off-price">$120</span>
                                 </div>
-                                <a class="rbt-btn-link left-icon" href="course-details.html"><i
-                                        class="feather-shopping-cart"></i> Add To Cart</a>
+                                <a class="rbt-btn-link" href="course-details.html">Saiba
+                                    Mais<i class="feather-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -1272,7 +1161,7 @@
                 </div>
                 <div class="col-lg-6 col-md-12 col-12">
                     <div class="load-more-btn text-start text-lg-end">
-                        <a class="rbt-btn-link" href="blog-list.html">Navegue pela postagem<i class="feather-arrow-right"></i></a>
+                        <a class="rbt-btn-link" href="blog-list.html">Navegue pelo nosso blog<i class="feather-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -1287,12 +1176,11 @@
                                 <img src="assets/images/blog/blog-grid-01.jpg" alt="Card image"> </a>
                         </div>
                         <div class="rbt-card-body">
-                            <h5 class="rbt-card-title"><a href="blog-details.html">Is University The Most Trending
-                                    Thing Now?</a></h5>
-                            <p class="rbt-card-text">It is a long established fact that a reader.</p>
+                            <h5 class="rbt-card-title"><a href="blog-details.html">Educação no Mundo Digital: Desafios e Oportunidades</a></h5>
+                            <p class="rbt-card-text">Descubra as vantagens e obstáculos de aprender no ambiente digital.</p>
                             <div class="rbt-card-bottom">
-                                <a class="transparent-button" href="blog-details.html">Learn
-                                    More<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
+                                <a class="transparent-button" href="blog-details.html">Saiba
+                                    Mais<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
                             </div>
                         </div>
                     </div>
@@ -1307,12 +1195,11 @@
                                 <img src="assets/images/blog/blog-grid-02.jpg" alt="Card image"> </a>
                         </div>
                         <div class="rbt-card-body">
-                            <h5 class="rbt-card-title"><a href="blog-details.html">Learn How More Money With
-                                    University.</a></h5>
-                            <p class="rbt-card-text">It is a long established fact that a reader.</p>
+                            <h5 class="rbt-card-title"><a href="blog-details.html">Educação Global: O Impacto da Conectividade</a></h5>
+                            <p class="rbt-card-text">Veja como as tecnologias estão unindo estudantes de diferentes partes do mundo.</p>
                             <div class="rbt-card-bottom">
-                                <a class="transparent-button" href="blog-details.html">Learn
-                                    More<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
+                                <a class="transparent-button" href="blog-details.html">Saiba
+                                    Mais<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
                             </div>
                         </div>
                     </div>
@@ -1327,12 +1214,11 @@
                                 <img src="assets/images/blog/blog-grid-03.jpg" alt="Card image"> </a>
                         </div>
                         <div class="rbt-card-body">
-                            <h5 class="rbt-card-title"><a href="blog-details.html">Understand The Background Of
-                                    University Now.</a></h5>
-                            <p class="rbt-card-text">It is a long established fact that a reader.</p>
+                            <h5 class="rbt-card-title"><a href="blog-details.html"> Aprendizado Personalizado: O Futuro da Educação</a></h5>
+                            <p class="rbt-card-text">Entenda como cursos adaptativos estão revolucionando a forma como aprendemos.</p>
                             <div class="rbt-card-bottom">
-                                <a class="transparent-button" href="blog-details.html">Learn
-                                    More<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
+                                <a class="transparent-button" href="blog-details.html">Saiba
+                                    Mais<i><svg width="17" height="12" xmlns="http://www.w3.org/2000/svg"><g stroke="#27374D" fill="none" fill-rule="evenodd"><path d="M10.614 0l5.629 5.629-5.63 5.629"/><path stroke-linecap="square" d="M.663 5.572h14.594"/></g></svg></i></a>
                             </div>
                         </div>
                     </div>
@@ -1371,14 +1257,14 @@
                         </div>
                         <div class="rbt-card-body">
                             <ul class="rbt-meta">
-                                <li><i class="feather-calendar"></i>11 Jan, 2024</li>
+                                <li><i class="feather-calendar"></i>11 Nov, 2025</li>
                                 <li><i class="feather-map-pin"></i>IAC Building</li>
                             </ul>
-                            <h4 class="rbt-card-title"><a href="event-details.html">International Education Fair 2024</a></h4>
+                            <h4 class="rbt-card-title"><a href="event-details.html">Conferência de Inovação na Educação Digital</a></h4>
                             <div class="read-more-btn">
                                 <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="event-details.html">
                                     <span class="icon-reverse-wrapper">
-                            <span class="btn-text">Get Ticket</span>
+                            <span class="btn-text">Obter ingresso</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     </span>
@@ -1402,12 +1288,12 @@
                                 <li><i class="feather-map-pin"></i>Vancouver</li>
                                 <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                             </ul>
-                            <h4 class="rbt-card-title"><a href="event-details.html">Painting Art Contest 2020</a></h4>
+                            <h4 class="rbt-card-title"><a href="event-details.html">Maratona Criativa: Design e Tecnologia na Educação</a></h4>
 
                             <div class="read-more-btn">
                                 <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="event-details.html">
                                     <span class="icon-reverse-wrapper">
-                            <span class="btn-text">Get Ticket</span>
+                            <span class="btn-text">Obter ingresso</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     </span>
@@ -1431,12 +1317,12 @@
                                 <li><i class="feather-map-pin"></i>Paris</li>
                                 <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                             </ul>
-                            <h4 class="rbt-card-title"><a href="event-details.html">Histudy Education Fair 2024</a></h4>
+                            <h4 class="rbt-card-title"><a href="event-details.html">Summit Internacional de Aprendizagem Personalizada 2025</a></h4>
 
                             <div class="read-more-btn">
                                 <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="event-details.html">
                                     <span class="icon-reverse-wrapper">
-                            <span class="btn-text">Get Ticket</span>
+                            <span class="btn-text">Obter ingresso</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     </span>
@@ -1460,12 +1346,12 @@
                                 <li><i class="feather-map-pin"></i>IAC Building</li>
                                 <li><i class="feather-clock"></i>8:00 am - 5:00 pm</li>
                             </ul>
-                            <h4 class="rbt-card-title"><a href="event-details.html"> Elegant Light Box Paper Cut Dioramas</a></h4>
+                            <h4 class="rbt-card-title"><a href="event-details.html"> Exposição Interativa: Experiências Imersivas no Ensino</a></h4>
 
                             <div class="read-more-btn">
                                 <a class="rbt-btn btn-border hover-icon-reverse btn-sm radius-round" href="event-details.html">
                                     <span class="icon-reverse-wrapper">
-                            <span class="btn-text">Get Ticket</span>
+                            <span class="btn-text">Obter ingresso</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     </span>
@@ -1498,8 +1384,7 @@
                                 </a>
                             </div>
 
-                            <p class="description mt--20">We’re always in search for talented
-                                and motivated people. Don’t be shy introduce yourself!
+                            <p class="description mt--20">Curte inovação e aprendizado? Chega mais e vem com a gente!
                             </p>
 
                             <ul class="social-icon social-default justify-content-start">
@@ -1556,15 +1441,9 @@
                             <ul class="ft-link">
                                 <li>
                                     <a href="contact.html">Contate-nos</a>
-                                </li>
-                                <li>
-                                    <a href="become-a-teacher.html">Torne-se um professor</a>
-                                </li>
+                                </li>                               
                                 <li>
                                     <a href="blog-list.html">Blog</a>
-                                </li>
-                                <li>
-                                    <a href="instructor.html">Instrutores</a>
                                 </li>
                                 <li>
                                     <a href="event-list.html">Eventos</a>
@@ -1587,11 +1466,7 @@
                                 <li><span>E-mail:</span> <a href="mailto:hr@example.com">helio@nowgo.com.br</a></li>
                             </ul>
 
-                            <form class="newsletter-form mt--20" action="#">
-                                <h6 class="w-600">Newsletter</h6>
-                                <p class="description">2000+ Our students are subscribe Around the World.<br> Don’t be shy
-                                introduce yourself!</p>
-
+                            <form class="newsletter-form mt--20" action="#">                              
                                 <div class="form-group right-icon icon-email mb--20">
                                     <label for="email">Digite seu e-mail aqui</label>
                                     <input id="email" type="email">
@@ -1699,7 +1574,7 @@
         function submitSearch() {
             const query = input.value.trim();
             if (query === "") return false;
-            alert("Pesquisando por: " + query); // Substitua com sua lógica de busca
+            alert("Pesquisando por: " + query);
             return false;
         }
     
@@ -1710,7 +1585,7 @@
             }
         });
     </script>
-
+    
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
 </body>

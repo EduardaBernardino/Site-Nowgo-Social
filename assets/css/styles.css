@@ -10150,6 +10150,36 @@ Primary style
 /**************************************
 	Header Styles
 ***************************************/
+
+/*--------------- NAV SEARCH INICIO ---------------*/
+/* Ícone da lupa */
+#searchInput {
+  border: 2px solid white; /* Cor da borda inicial */
+  transition: border 0.3s ease, width 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+/* Quando o input estiver expandido, aplica gradiente */
+body.dark #searchInput {
+  border: 2px solid transparent;
+  background-image: linear-gradient(45deg, #3f8cff, #800080);
+  color: white;
+}
+
+/* Placeholder com cor visível */
+#searchInput::placeholder {
+  color: #444;
+}
+
+/* Ícone da lupa com gradiente */
+.feather-search {
+  background: linear-gradient(45deg, #3f8cff, #800080);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+
+/*--------------- NAV SEARCH FIM ---------------*/
+
 /*---------------------------
     Header Common Styles  
 ----------------------------*/
@@ -28240,8 +28270,8 @@ blockquote.has-text-align-right cite,
 .rbt-swiper-thumb .swiper-slide {
   display: inline-block;
   line-height: 100%;
-  height: 80px;
-  width: 80px !important;
+  height: 55px;
+  width: 50px !important;
   border-radius: 100%;
   cursor: pointer;
   position: relative;
