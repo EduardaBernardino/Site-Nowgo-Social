@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula ao Vivo</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo/now go.png">
+
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            grid-template-rows: 60px 1fr;
+            min-height: 100vh;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .header {
+            grid-column: 1 / -1;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+
+        .class-info h1 {
+            color: #2d3748;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .class-info p {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .theme-toggle {
+            background: linear-gradient(45deg, #4a5568, #2d3748);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dark Theme */
+        body.dark-theme {
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+        }
+
+        .dark-theme .header,
+        .dark-theme .participants-panel,
+        .dark-theme .chat-panel {
+            background: rgba(45, 55, 72, 0.95);
+            color: #e2e8f0;
+        }
+
+        .dark-theme .class-info h1 {
+            color: #e2e8f0;
+        }
+
+        .dark-theme .class-info p {
+            color: #a0aec0;
+        }
+
+        .dark-theme .panel-header {
+            color: #e2e8f0;
+        }
+
+        .dark-theme .participant-item {
+            border-bottom-color: #4a5568;
+        }
+
+        .dark-theme .message {
+            background: #2d3748;
+        }
+
+        .dark-theme .message-sender {
+            color: #81e6d9;
+        }
+
+        .dark-theme .message-content {
+            color: #e2e8f0;
+        }
+
+        .dark-theme .chat-input {
+            background: rgba(45, 55, 72, 0.8);
+            border-color: #4a5568;
+        }
+
+        .dark-theme .chat-input input {
+            background: #2d3748;
+            border-color: #4a5568;
+            color: #e2e8f0;
+        }
+
+        .dark-theme .chat-input input:focus {
+            border-color: #81e6d9;
+            box-shadow: 0 0 0 3px rgba(129, 230, 217, 0.1);
+        }
+
+        .dark-theme .chat-input input::placeholder {
+            color: #a0aec0;
+        }
+
+        .dark-theme .notification {
+            background: rgba(45, 55, 72, 0.95);
+            color: #e2e8f0;
+            border-left-color: #81e6d9;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #51cf66, #40c057);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            min-height: 0;
+        }
+
+        .video-area {
+            display: grid;
+            grid-template-rows: 2fr 1fr;
+            gap: 10px;
+            min-height: 500px;
+        }
+
+        .main-video {
+            background: rgba(0, 0, 0, 0.9);
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            min-height: 300px;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #2d3748, #4a5568);
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .main-video:hover .video-controls {
+            opacity: 1;
+        }
+
+        .video-controls-left {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .video-controls-center {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .video-controls-right {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .control-button {
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            color: white;
+        }
+
+        .mic-btn {
+            background: linear-gradient(45deg, #48bb78, #38a169);
+        }
+
+        .mic-btn.muted {
+            background: linear-gradient(45deg, #f56565, #e53e3e);
+        }
+
+        .video-btn {
+            background: linear-gradient(45deg, #4299e1, #3182ce);
+        }
+
+        .video-btn.off {
+            background: linear-gradient(45deg, #a0aec0, #718096);
+        }
+
+        .end-call-btn {
+            background: linear-gradient(45deg, #f56565, #e53e3e);
+            width: 50px;
+            height: 50px;
+        }
+
+        .control-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .screen-share-btn {
+            background: linear-gradient(45deg, #ed8936, #dd6b20);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .screen-share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .fullscreen-btn {
+            background: linear-gradient(45deg, #9f7aea, #805ad5);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .fullscreen-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .live-indicator {
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #f56565;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .participant-videos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            min-height: 120px;
+        }
+
+        .participant-video {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            aspect-ratio: 16/9;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .participant-name {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .sidebar {
+            display: grid;
+            grid-template-rows: 1fr 2fr;
+            gap: 10px;
+            min-height: 0;
+        }
+
+        .participants-panel, .chat-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #2d3748;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .participants-list {
+            overflow-y: auto;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .participant-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .participant-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #48bb78;
+        }
+
+        .status-indicator.muted {
+            background: #f56565;
+        }
+
+        .participant-controls {
+            display: flex;
+            gap: 5px;
+        }
+
+        .control-btn {
+            width: 24px;
+            height: 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            min-height: 0;
+            max-height: none;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 8px;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+
+        .message-sender {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 0.9rem;
+        }
+
+        .message-content {
+            color: #2d3748;
+            font-size: 0.9rem;
+            margin-top: 2px;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #667eea;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        /* Fullscreen styles */
+        .main-video.fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1000;
+            border-radius: 0;
+        }
+
+        /* Scrollbar personalizada */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .dark-theme ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .dark-theme ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .dark-theme ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                min-height: auto;
+            }
+            
+            .main-content {
+                grid-template-columns: 1fr;
+                order: 2;
+            }
+            
+            .sidebar {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr;
+                order: 3;
+                min-height: 200px;
+            }
+
+            .header {
+                order: 1;
+                position: relative;
+                top: auto;
+            }
+
+            .header-controls {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .video-area {
+                min-height: 400px;
+            }
+
+            .main-video {
+                min-height: 250px;
+            }
+
+            .video-controls-center {
+                gap: 10px;
+            }
+
+            .control-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 5px;
+                gap: 5px;
+            }
+
+            .header {
+                padding: 0 15px;
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                gap: 10px;
+            }
+
+            .class-info h1 {
+                font-size: 1.2rem;
+            }
+
+            .class-info p {
+                font-size: 0.8rem;
+            }
+
+            .header-controls {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .sidebar {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            .video-controls {
+                padding: 15px;
+            }
+
+            .video-controls-center {
+                gap: 8px;
+            }
+
+            .control-button {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+
+            .end-call-btn {
+                width: 40px;
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="class-info">
+                <h1>Lógica de programação - Turma A</h1>
+                <p>Estruturas condionais • 14:30 - 16:00 • 15 participantes online</p>
+            </div>
+            <div class="header-controls">
+                <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">
+                    <span id="themeIcon">🌙</span>
+                </button>
+                <button class="btn btn-success" onclick="toggleRecording()">
+                    <span id="recordBtn">🔴 Iniciar Gravação</span>
+                </button>
+                <button class="btn btn-primary" onclick="toggleSilentMode()">
+                    <span id="silentBtn">🔇 Modo Silencioso</span>
+                </button>
+                <button class="btn btn-danger" onclick="endClass()">Encerrar Aula</button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Video Area -->
+            <div class="video-area">
+                <div class="main-video" id="mainVideo">                  
+                    <div class="video-placeholder">
+                        📹 Transmissão Principal - Prof. João Silva
+                    </div>
+                    <div class="video-controls">
+                        <div class="video-controls-left">
+                            <button class="screen-share-btn" onclick="shareScreen()">📺 Compartilhar Tela</button>
+                        </div>
+                        
+                        <div class="video-controls-center">
+                            <button class="control-button mic-btn" id="micBtn" onclick="toggleMic()">🎤</button>
+                            <button class="control-button video-btn" id="videoBtn" onclick="toggleVideo()">📹</button>
+                            <button class="control-button end-call-btn" onclick="endClass()">📞</button>
+                        </div>
+                        
+                        <div class="video-controls-right">
+                            <div class="live-indicator">
+                                <div class="live-dot"></div>
+                                <span>AO VIVO • 24:35</span>
+                            </div>
+                            <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Tela cheia">⛶</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="participant-videos">
+                    <div class="participant-video">
+                        <div class="participant-name">Ana Santos</div>
+                        👤
+                    </div>
+                    <div class="participant-video">
+                        <div class="participant-name">Carlos Lima</div>
+                        👤
+                    </div>
+                    <div class="participant-video">
+                        <div class="participant-name">Maria Silva</div>
+                        👤
+                    </div>
+                    <div class="participant-video">
+                        <div class="participant-name">Pedro Costa</div>
+                        👤
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Participants Panel -->
+            <div class="participants-panel">
+                <div class="panel-header">
+                    <span>Participantes (15)</span>
+                    <button class="btn btn-primary" style="padding: 4px 8px; font-size: 0.8rem;" onclick="addParticipant()">+ Adicionar</button>
+                </div>
+                <div class="participants-list">
+                    <div class="participant-item">
+                        <div class="participant-info">
+                            <div class="status-indicator"></div>
+                            <span>Prof. João Silva</span>
+                            <span style="font-size: 0.8rem; color: #667eea;"></span>
+                        </div>
+                        <div class="participant-controls">
+                            <button class="control-btn" style="background: #48bb78; color: white;" title="Microfone ativo">🎤</button>
+                            <button class="control-btn" style="background: #4299e1; color: white;" title="Câmera ativa">📹</button>
+                        </div>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-info">
+                            <div class="status-indicator"></div>
+                            <span>Ana Santos</span>
+                        </div>
+                        <div class="participant-controls">
+                            <button class="control-btn" style="background: #f56565; color: white;" title="Microfone mutado" onclick="toggleParticipantMic(this)">🔇</button>
+                            <button class="control-btn" style="background: #4299e1; color: white;" title="Câmera ativa" onclick="toggleParticipantVideo(this)">📹</button>
+                            <button class="control-btn" style="background: #f56565; color: white;" title="Remover" onclick="removeParticipant(this)">❌</button>
+                        </div>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-info">
+                            <div class="status-indicator"></div>
+                            <span>Carlos Lima</span>
+                        </div>
+                        <div class="participant-controls">
+                            <button class="control-btn" style="background: #48bb78; color: white;" title="Microfone ativo" onclick="toggleParticipantMic(this)">🎤</button>
+                            <button class="control-btn" style="background: #a0aec0; color: white;" title="Câmera desligada" onclick="toggleParticipantVideo(this)">📹</button>
+                            <button class="control-btn" style="background: #f56565; color: white;" title="Remover" onclick="removeParticipant(this)">❌</button>
+                        </div>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-info">
+                            <div class="status-indicator"></div>
+                            <span>Maria Silva</span>
+                        </div>
+                        <div class="participant-controls">
+                            <button class="control-btn" style="background: #f56565; color: white;" title="Microfone mutado" onclick="toggleParticipantMic(this)">🎤</button>
+                            <button class="control-btn" style="background: #4299e1; color: white;" title="Câmera ativa" onclick="toggleParticipantVideo(this)">📹</button>
+                            <button class="control-btn" style="background: #f56565; color: white;" title="Remover" onclick="removeParticipant(this)">❌</button>
+                        </div>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-info">
+                            <div class="status-indicator"></div>
+                            <span>Lucas Ferreira</span>
+                        </div>
+                        <div class="participant-controls">
+                            <button class="control-btn" style="background: #48bb78; color: white;" title="Microfone ativo" onclick="toggleParticipantMic(this)">🎤</button>
+                            <button class="control-btn" style="background: #4299e1; color: white;" title="Câmera ativa" onclick="toggleParticipantVideo(this)">📹</button>
+                            <button class="control-btn" style="background: #f56565; color: white;" title="Remover" onclick="removeParticipant(this)">❌</button>
+                        </div>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-info">
+                            <div class="status-indicator"></div>
+                            <span>Fernanda Oliveira</span>
+                        </div>
+                        <div class="participant-controls">
+                            <button class="control-btn" style="background: #f56565; color: white;" title="Microfone mutado" onclick="toggleParticipantMic(this)">🔇</button>
+                            <button class="control-btn" style="background: #a0aec0; color: white;" title="Câmera desligada" onclick="toggleParticipantVideo(this)">📹</button>
+                            <button class="control-btn" style="background: #f56565; color: white;" title="Remover" onclick="removeParticipant(this)">❌</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Panel -->
+            <div class="chat-panel">
+                <div class="panel-header">
+                    <span>💬 Chat</span>
+                    <span style="font-size: 0.8rem; color: #a0aec0;">12 mensagens</span>
+                </div>
+                <div class="chat-messages">
+                    <div class="message">
+                        <div class="message-sender">Ana Santos</div>
+                        <div class="message-content">Boa tarde, professor! Consegue ouvir bem?</div>
+                    </div>
+                    <div class="message">
+                        <div class="message-sender">Prof. João Silva</div>
+                        <div class="message-content">Boa tarde! Sim, estou ouvindo perfeitamente. Vamos começar!</div>
+                    </div>
+                    <div class="message">
+                        <div class="message-sender">Carlos Lima</div>
+                        <div class="message-content">Excelente explicação! 👏</div>
+                    </div>
+                    <div class="message">
+                        <div class="message-sender">Maria Silva</div>
+                        <div class="message-content">Posso fazer uma pergunta sobre o if else?</div>
+                    </div>
+                    <div class="message">
+                        <div class="message-sender">Pedro Costa</div>
+                        <div class="message-content">Muito claro professor, obrigado!</div>
+                    </div>
+                    <div class="message">
+                        <div class="message-sender">Lucas Ferreira</div>
+                        <div class="message-content">Pode repetir a parte sobre o if?</div>
+                    </div>
+                    <div class="message">
+                        <div class="message-sender">Fernanda Oliveira</div>
+                        <div class="message-content">Entendi a explicação, muito boa! 🎯</div>
+                    </div>
+                </div>
+                <div class="chat-input">                     
+                    <input type="text" placeholder="Digite sua mensagem..." id="chatMessage">                     
+                    <button class="chat-send-btn" onclick="sendMessage()" title="Enviar mensagem">
+                        <i class="fi fi-br-paper-plane-top"></i>
+                    </button>                 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <strong>📢 Notificação</strong>
+        <div>Nova mensagem recebida!</div>
+    </div>
+    <script>
+        let isMicMuted = false;
+        let isVideoOff = false;
+        let isRecording = false;
+        let isSilentMode = false;
+        let participantCount = 15;
+        let isDarkTheme = false;
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('themeIcon');
+            
+            isDarkTheme = !isDarkTheme;
+            
+            if (isDarkTheme) {
+                body.classList.add('dark-theme');
+                themeIcon.textContent = '☀️';
+                showNotification('Modo escuro ativado');
+            } else {
+                body.classList.remove('dark-theme');
+                themeIcon.textContent = '🌙';
+                showNotification('Modo claro ativado');
+            }
+        }
+
+        function toggleMic() {
+            const micBtn = document.getElementById('micBtn');
+            isMicMuted = !isMicMuted;
+            
+            if (isMicMuted) {
+                micBtn.classList.add('muted');
+                micBtn.innerHTML = '🔇';
+                showNotification('Microfone mutado');
+            } else {
+                micBtn.classList.remove('muted');
+                micBtn.innerHTML = '🎤';
+                showNotification('Microfone ativado');
+            }
+        }
+
+        function toggleVideo() {
+            const videoBtn = document.getElementById('videoBtn');
+            isVideoOff = !isVideoOff;
+            
+            if (isVideoOff) {
+                videoBtn.classList.add('off');
+                videoBtn.innerHTML = '📹';
+                showNotification('Câmera desligada');
+            } else {
+                videoBtn.classList.remove('off');
+                videoBtn.innerHTML = '📹';
+                showNotification('Câmera ligada');
+            }
+        }
+
+        function shareScreen() {
+            showNotification('Compartilhamento de tela iniciado');
+        }
+
+        function toggleRecording() {
+            const recordBtn = document.getElementById('recordBtn');
+            isRecording = !isRecording;
+            
+            if (isRecording) {
+                recordBtn.innerHTML = '⏹️ Parar Gravação';
+                recordBtn.parentElement.classList.remove('btn-success');
+                recordBtn.parentElement.classList.add('btn-danger');
+                showNotification('Gravação iniciada');
+            } else {
+                recordBtn.innerHTML = '🔴 Iniciar Gravação';
+                recordBtn.parentElement.classList.remove('btn-danger');
+                recordBtn.parentElement.classList.add('btn-success');
+                showNotification('Gravação parada e salva');
+            }
+        }
+
+        function toggleSilentMode() {
+            const silentBtn = document.getElementById('silentBtn');
+            isSilentMode = !isSilentMode;
+            
+            if (isSilentMode) {
+                silentBtn.innerHTML = '🔊 Desativar Silencioso';
+                showNotification('Modo silencioso ativado - Microfones dos alunos bloqueados');
+            } else {
+                silentBtn.innerHTML = '🔇 Modo Silencioso';
+                showNotification('Modo silencioso desativado');
+            }
+        }
+
+        function toggleParticipantMic(button) {
+            if (button.innerHTML === '🎤') {
+                button.innerHTML = '🔇';
+                button.style.background = '#f56565';
+                showNotification('Microfone do participante mutado');
+            } else {
+                button.innerHTML = '🎤';
+                button.style.background = '#48bb78';
+                showNotification('Microfone do participante ativado');
+            }
+        }
+
+        function toggleParticipantVideo(button) {
+            if (button.style.background.includes('68, 153, 225')) {
+                button.style.background = '#a0aec0';
+                showNotification('Câmera do participante desligada');
+            } else {
+                button.style.background = '#4299e1';
+                showNotification('Câmera do participante ligada');
+            }
+        }
+
+        function removeParticipant(button) {
+            const participantItem = button.closest('.participant-item');
+            const participantName = participantItem.querySelector('span').textContent;
+            
+            if (confirm(`Remover ${participantName} da aula?`)) {
+                participantItem.remove();
+                participantCount--;
+                updateParticipantCount();
+                showNotification(`${participantName} foi removido da aula`);
+            }
+        }
+
+        function addParticipant() {
+            const name = prompt('Nome do novo participante:');
+            if (name) {
+                participantCount++;
+                updateParticipantCount();
+                showNotification(`${name} entrou na aula`);
+            }
+        }
+
+        function updateParticipantCount() {
+            const countElement = document.querySelector('.panel-header span');
+            countElement.textContent = `👥 Participantes (${participantCount})`;
+            
+            const headerInfo = document.querySelector('.class-info p');
+            headerInfo.textContent = `Álgebra Linear • 14:30 - 16:00 • ${participantCount} participantes online`;
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById('chatMessage');
+            const message = messageInput.value.trim();
+            
+            if (message) {
+                const chatMessages = document.querySelector('.chat-messages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message';
+                messageDiv.innerHTML = `
+                    <div class="message-sender">Você</div>
+                    <div class="message-content">${message}</div>
+                `;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                messageInput.value = '';
+                
+                showNotification('Mensagem enviada');
+            }
+        }
+
+        function endClass() {
+            if (confirm('Tem certeza que deseja encerrar a aula?')) {
+                showNotification('Aula encerrada. Obrigado pela participação!');
+                setTimeout(() => {
+                    alert('Aula encerrada com sucesso!\n\n📊 Estatísticas da aula:\n• Duração: 45 minutos\n• Participantes: 15\n• Perguntas respondidas: 8\n• Gravação salva automaticamente\n• Pontos distribuídos: 1.250\n• Média de satisfação: 4.8/5.0');
+                }, 2000);
+            }
+        }
+
+        function showMaterials() {
+            const materials = [
+                '📄 Slides - Álgebra Linear.pdf',
+                '📊 Exercícios - Matrizes.pdf',
+                '🎥 Vídeo complementar - Determinantes',
+                '📝 Lista de exercícios para casa',
+                '🔗 Links úteis - Khan Academy'
+            ];
+            
+            let materialsList = 'Materiais disponíveis:\n\n';
+            materials.forEach((material, index) => {
+                materialsList += `${index + 1}. ${material}\n`;
+            });
+            
+            alert(materialsList + '\n💡 Todos os materiais foram enviados para seu e-mail!');
+                showNotification('Materiais de apoio enviados por e-mail');
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.innerHTML = `
+                <strong>📢 Notificação</strong>
+                <div>${message}</div>
+            `;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Simular atividade em tempo real
+        setInterval(() => {
+            const messages = [
+                { sender: 'Ana Santos', content: 'Entendi perfeitamente! Obrigada.' },
+                { sender: 'Carlos Lima', content: 'Pode repetir a parte sobre autovalores?' },
+                { sender: 'Maria Silva', content: 'Excelente explicação! 👏' },
+                { sender: 'Pedro Costa', content: 'Tenho uma dúvida sobre a próxima aula.' }
+            ];
+            
+            if (Math.random() > 0.7) {
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                const chatMessages = document.querySelector('.chat-messages');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message';
+                messageDiv.innerHTML = `
+                    <div class="message-sender">${randomMessage.sender}</div>
+                    <div class="message-content">${randomMessage.content}</div>
+                `;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }, 8000);
+
+        // Permitir envio de mensagem com Enter
+        document.getElementById('chatMessage').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        </script>
+
+</body>
+</html>

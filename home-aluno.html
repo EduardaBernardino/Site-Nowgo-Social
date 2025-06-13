@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Cursos - Dashboard</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo/now go.png">
+
+    <!-- CSS
+	============================================ -->
+    <link rel="stylesheet" href="assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/vendor/slick.css">
+    <link rel="stylesheet" href="assets/css/vendor/slick-theme.css">
+    <link rel="stylesheet" href="assets/css/plugins/sal.css">
+    <link rel="stylesheet" href="assets/css/plugins/feather.css">
+    <link rel="stylesheet" href="assets/css/plugins/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/euclid-circulara.css">
+    <link rel="stylesheet" href="assets/css/plugins/swiper.css">
+    <link rel="stylesheet" href="assets/css/plugins/odometer.css">
+    <link rel="stylesheet" href="assets/css/plugins/animation.css">
+    <link rel="stylesheet" href="assets/css/plugins/bootstrap-select.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnigy-popup.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/plyr.css">
+    <link rel="stylesheet" href="assets/css/plugins/jodit.min.css">
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .welcome-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-title {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-subtitle {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .action-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .action-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .exercises-card .action-icon {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        }
+
+        .content-card .action-icon {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        }
+
+        .live-class-card .action-icon {
+            background: linear-gradient(45deg, #ffa726, #ff7043);
+        }
+
+        .action-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-description {
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .recent-activity {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            background: rgba(248, 250, 252, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .activity-item:hover {
+            background: rgba(241, 245, 249, 0.9);
+            transform: translateX(4px);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 1rem;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-time {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .notification-badge {
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .main-container {
+                padding: 1rem;
+            }
+
+            .welcome-section, .recent-activity {
+                padding: 1.5rem;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="my_switcher" class="my_switcher">
+        <ul>
+            <li>
+                <a href="javascript: void(0);" data-theme="light" class="setColor light">
+                    <img src="assets/images/about/sun-01.svg" alt="Sun images"><span title="Light Mode"> Light</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript: void(0);" data-theme="dark" class="setColor dark">
+                    <img src="assets/images/about/vector.svg" alt="Vector Images"><span title="Dark Mode"> Dark</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+   <!-- Start Header Area -->
+    <header class="rbt-header rbt-header-4">
+        <div class="rbt-sticky-placeholder"></div>
+        <!-- Start Header Top -->
+        <div class="rbt-header-top rbt-header-top-1 variation-height-50 header-space-betwween bg-color-white border-top-bar-primary-color rbt-border-bottom d-none d-xl-block">
+            <div class="container-fluid">
+                <div class="rbt-header-sec align-items-center ">
+                    <div class="rbt-header-sec-col rbt-header-left">
+                        <div class="rbt-header-content">
+                            <div class="header-info">
+                                <ul class="rbt-information-list">
+                                    <li>
+                                        <a href="#"><i class="feather-phone"></i>+1-202-555-0174</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="rbt-separator"></div>
+                            <div class="header-info">
+                                <ul class="social-share-transparent">
+                                    <li>
+                                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-skype"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fab fa-youtube"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rbt-header-sec-col rbt-header-right">
+                        <div class="rbt-header-content">
+                            <div class="header-info">
+                                <ul class="rbt-secondary-menu">
+                                    <li><a href="my-account.html">Minha conta</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="contact.html">Contate-nos</a></li>
+                                    <li><a href="privacy-policy.html">Política de privacidade</a></li>
+                                    <li><a href="#">Termos e condições</a></li>
+                                </ul>
+                            </div>
+                            <div class="rbt-separator"></div>
+                            <div class="header-info">
+                                <div class="header-right-btn d-flex">
+                                    <a class="rbt-btn rbt-switch-btn btn-gradient btn-xs" href="#">
+                                        <span data-text="Join Now">Join Now</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Header Top -->
+
+        <div class="rbt-header-wrapper header-space-betwween bg-color-white header-sticky">
+            <div class="container-fluid">
+                <div class="mainbar-row rbt-navigation-start align-items-center">
+                    <div class="header-left">
+                        <div class="logo logo-dark">
+                            <a href="index.html">
+                                <img src="assets/images/logo/Logo-Dark.png" alt="Education Logo Images">
+                            </a>
+                        </div>
+
+                        <div class="logo d-none logo-light">
+                            <a href="index.html">
+                                <img src="assets/images/logo/Logo-Light.png" alt="Education Logo Images">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="rbt-main-navigation d-none d-xl-block">
+                        <nav class="mainmenu-nav">
+                            <ul class="mainmenu">
+                                <li class="with-megamenu has-menu-child-item position-static">
+                                    <a href="#">Início</a>                                
+                                </li>
+
+                                <li class="with-megamenu has-menu-child-item">
+                                    <a href="about-us-01.html">Quem somos</a>                                   
+                                </li>
+
+                                <li class="with-megamenu has-menu-child-item">
+                                    <a href="course-with-sidebar.html">Cursos</a>                                   
+                                </li>
+                                                                                                                          
+                                <li class="with-megamenu has-menu-child-item">
+                                    <a href="event-sidebar.html">Eventos</a>                                   
+                                </li>
+                                
+                                <li class="with-megamenu has-menu-child-item position-static">
+                                    <a href="blog-list.html">Blog</a>                                 
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="header-right"> 
+
+                    <!-- Navbar Icons -->
+                    <div style="position: relative; display: inline-block;">
+                        <form onsubmit="return submitSearch()" style="position: relative; max-width: 100%; margin-right: 15px; display: inline-block;">
+                            <input id="searchInput" type="text" placeholder="Pesquisar"
+                                style="width: 0; opacity: 0; transition: all 0.3s ease; padding-right: 40px; height: 40px; border: 2px solid white; border-radius: 20px; background-color: transparent; color: inherit; outline: none;"
+                                onfocus="this.style.borderColor = '#3f8cff'" 
+                                onblur="if(this.value === '') this.style.borderColor = 'white';">
+                            
+                            <button type="button" onclick="toggleSearch()" 
+                                style="position: absolute; right: 0; top: 0; height: 100%; border: none; background: transparent; padding: 0 10px; cursor: pointer;">
+                                <i class="feather-search" style="background: linear-gradient(45deg, #3f8cff, #800080); -webkit-background-clip: text; color: transparent;"></i>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    
+                    
+                    
+
+                    <a class="rbt-btn btn-sm" href="login.html" style="vertical-align: middle;">Entrar</a>
+                                                                    
+                        <!-- Start Mobile-Menu-Bar -->
+                        <div class="mobile-menu-bar d-block d-xl-none">
+                            <div class="hamberger">
+                                <button class="hamberger-button rbt-round-btn">
+                                    <i class="feather-menu"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Start Mobile-Menu-Bar -->
+                    </div>
+                </div>
+            </div>
+            <!-- Start Search Dropdown  -->
+            <div class="rbt-search-dropdown">
+                <div class="wrapper">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form action="#">
+                                <input type="text" placeholder="What are you looking for?">
+                                <div class="submit-btn">
+                                    <a class="rbt-btn btn-gradient btn-md" href="#">Search</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="rbt-separator-mid">
+                        <hr class="rbt-separator m-0">
+                    </div>
+
+                    <div class="row g-4 pt--30 pb--60">
+                        <div class="col-lg-12">
+                            <div class="section-title">
+                                <h5 class="rbt-title-style-2">Our Top Course</h5>
+                            </div>
+                        </div>
+
+                        <!-- Start Single Card  -->
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div class="rbt-card variation-01 rbt-hover">
+                                <div class="rbt-card-img">
+                                    <a href="course-details.html">
+                                        <img src="assets/images/course/course-online-01.jpg" alt="Card image">
+                                    </a>
+                                </div>
+                                <div class="rbt-card-body">
+                                    <h5 class="rbt-card-title"><a href="course-details.html">React Js</a>
+                                    </h5>
+                                    <div class="rbt-review">
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-count"> (15 Reviews)</span>
+                                    </div>
+                                    <div class="rbt-card-bottom">
+                                        <div class="rbt-price">
+                                            <span class="current-price">$15</span>
+                                            <span class="off-price">$25</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Card  -->
+
+                        <!-- Start Single Card  -->
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div class="rbt-card variation-01 rbt-hover">
+                                <div class="rbt-card-img">
+                                    <a href="course-details.html">
+                                        <img src="assets/images/course/course-online-02.jpg" alt="Card image">
+                                    </a>
+                                </div>
+                                <div class="rbt-card-body">
+                                    <h5 class="rbt-card-title"><a href="course-details.html">Java Program</a>
+                                    </h5>
+                                    <div class="rbt-review">
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-count"> (15 Reviews)</span>
+                                    </div>
+                                    <div class="rbt-card-bottom">
+                                        <div class="rbt-price">
+                                            <span class="current-price">$10</span>
+                                            <span class="off-price">$40</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Card  -->
+
+                        <!-- Start Single Card  -->
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div class="rbt-card variation-01 rbt-hover">
+                                <div class="rbt-card-img">
+                                    <a href="course-details.html">
+                                        <img src="assets/images/course/course-online-03.jpg" alt="Card image">
+                                    </a>
+                                </div>
+                                <div class="rbt-card-body">
+                                    <h5 class="rbt-card-title"><a href="course-details.html">Web Design</a>
+                                    </h5>
+                                    <div class="rbt-review">
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-count"> (15 Reviews)</span>
+                                    </div>
+                                    <div class="rbt-card-bottom">
+                                        <div class="rbt-price">
+                                            <span class="current-price">$10</span>
+                                            <span class="off-price">$20</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Card  -->
+
+                        <!-- Start Single Card  -->
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                            <div class="rbt-card variation-01 rbt-hover">
+                                <div class="rbt-card-img">
+                                    <a href="course-details.html">
+                                        <img src="assets/images/course/course-online-04.jpg" alt="Card image">
+                                    </a>
+                                </div>
+                                <div class="rbt-card-body">
+                                    <h5 class="rbt-card-title"><a href="course-details.html">Web Design</a>
+                                    </h5>
+                                    <div class="rbt-review">
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="rating-count"> (15 Reviews)</span>
+                                    </div>
+                                    <div class="rbt-card-bottom">
+                                        <div class="rbt-price">
+                                            <span class="current-price">$20</span>
+                                            <span class="off-price">$40</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Single Card  -->
+                    </div>
+
+                </div>
+            </div>
+            <!-- End Search Dropdown  -->
+        </div>
+
+    </header>
+
+    <!-- Mobile Menu Section -->
+    <div class="popup-mobile-menu">
+        <div class="inner-wrapper">
+            <div class="inner-top">
+                <div class="content">
+                    <div class="logo">
+                        <div class="logo logo-dark">
+                            <a href="index.html">
+                                <img src="assets/images/logo/LogoBlack_Nowgo.svg" alt="Education Logo Images">
+                            </a>
+                        </div>
+
+                        <div class="logo d-none logo-light">
+                            <a href="index.html">
+                                <img src="assets/images/logo/LogoWhite_Nowgo.svg" alt="Education Logo Images">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="rbt-btn-close">
+                        <button class="close-button rbt-round-btn"><i class="feather-x"></i></button>
+                    </div>
+                </div>
+                <p class="description">Sua jornada educacional começa aqui.</p>
+                <ul class="navbar-top-left rbt-information-list justify-content-start">
+                    <li>
+                        <a href="mailto:hello@example.com"><i class="feather-mail"></i>helio@nowgo.com.br</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="feather-phone"></i>(302) 555-0107</a>
+                    </li>
+                </ul>
+            </div>
+
+            <nav class="mainmenu-nav">
+                <ul class="mainmenu">
+                    <li class="with-megamenu has-menu-child-item position-static">
+                        <a href="#">Início</a>                   
+                    </li>
+
+                    <li class="with-megamenu has-menu-child-item">
+                        <a href="#">Cursos</a>                      
+                    </li>
+
+                   <li class="with-megamenu has-menu-child-item position-static">
+                        <a href="event-sidebar.html">Eventos</a>                     
+                    </li>
+              
+                    <li class="with-megamenu has-menu-child-item position-static">
+                        <a href="blog-list.html">Blog</a>                     
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="mobile-menu-bottom">
+                <div class="rbt-btn-wrapper mb--20">
+                    <a class="rbt-btn btn-border-gradient radius-round btn-sm hover-transform-none w-100 justify-content-center text-center" href="#">
+                        <span>Enroll Now</span>
+                    </a>
+                </div>
+
+                <div class="social-share-wrapper">
+                    <span class="rbt-short-title d-block">Find With Us</span>
+                    <ul class="social-icon social-default transparent-with-border justify-content-start mt--20">
+                        <li><a href="https://www.facebook.com/">
+                                <i class="feather-facebook"></i>
+                            </a>
+                        </li>
+                        <li><a href="https://www.twitter.com">
+                                <i class="feather-twitter"></i>
+                            </a>
+                        </li>
+                        <li><a href="https://www.instagram.com/">
+                                <i class="feather-instagram"></i>
+                            </a>
+                        </li>
+                        <li><a href="https://www.linkdin.com/">
+                                <i class="feather-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <main class="main-container">
+        <section class="welcome-section">
+            <h1 class="welcome-title">Bem-vindo de volta, João! 👋</h1>
+            <p class="welcome-subtitle">Continue sua jornada de aprendizado. Você tem 3 novos conteúdos para explorar.</p>
+        </section>
+
+        <section class="quick-actions" >
+            <div class="action-card exercises-card" onclick="navigateToExercises()" >
+                <div class="action-icon">📝</div>
+                <h3 class="action-title">Exercícios</h3>
+                <p class="action-description">Pratique seus conhecimentos com exercícios interativos e receba feedback instantâneo</p>
+                <div class="notification-badge" style="position: absolute; top: 1rem; right: 1rem;">5</div>
+            </div>
+
+            <div class="action-card content-card" onclick="navigateToContent()">
+
+                <div class="action-icon">📖</div>
+                <h3 class="action-title">Conteúdos</h3>
+                <p class="action-description">Acesse materiais de estudo, vídeos, apostilas e recursos complementares</p>
+            </div>
+
+            <div class="action-card live-class-card" onclick="navigateToLiveClass()">
+                <div class="action-icon">🎥</div>
+                <h3 class="action-title">Aulas ao Vivo</h3>
+                <p class="action-description">Participe de aulas em tempo real e tire suas dúvidas com os professores</p>
+                <div class="notification-badge" style="position: absolute; top: 1rem; right: 1rem;">2</div>
+            </div>
+        </section>
+
+        <section class="recent-activity">
+            <h2 class="section-title">Atividade Recente</h2>
+            
+            <div class="activity-item">
+                <div class="activity-icon">✅</div>
+                <div class="activity-content">
+                    <div class="activity-title">Exercício de lógica concluído</div>
+                    <div class="activity-time">Há 2 horas</div>
+                </div>
+            </div>
+
+            <div class="activity-item">
+                <div class="activity-icon">📺</div>
+                <div class="activity-content">
+                    <div class="activity-title">Aula de Lógica de programação - Estruturas condionais assistida</div>
+                    <div class="activity-time">Ontem às 14:30</div>
+                </div>
+            </div>
+
+            <div class="activity-item">
+                <div class="activity-icon">📚</div>
+                <div class="activity-content">
+                    <div class="activity-title">Material "Introdução à Lógica de programação" baixado</div>
+                    <div class="activity-time">2 dias atrás</div>
+                </div>
+            </div>
+
+            <div class="activity-item">
+                <div class="activity-icon">🎯</div>
+                <div class="activity-content">
+                    <div class="activity-title">Meta semanal de estudos atingida</div>
+                    <div class="activity-time">3 dias atrás</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+        <!-- Start Footer aera -->
+        <div class="footer-style-2 ptb--60 bg-color-white">
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-lg-12">
+                        <div class="inner text-center">
+
+                            <div class="logo logo-dark">
+                                <a href="index.html">
+                                    <img src="assets/images/logo/now go.png" alt="Education Logo Images">
+                                </a>
+                            </div>
+
+                            <div class="logo d-none logo-light">
+                                <a href="index.html">
+                                    <img src="assets/images/logo/now go2.png" alt="Education Logo Images">
+                                </a>
+                            </div>
+                            <!-- Social icone Area -->
+                            <ul class="social-icon social-default">
+                                <li><a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a></li>
+                                <li><a href="https://x.com/"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a></li>
+                            </ul>
+                            <!-- End -->
+                            <div class="text mt--20">
+                                <p>© 2025 <a target="_blank" href="https://rainbowthemes.net/portfolio">Nowgo Social</a>. Todos 
+                                    os direitos reservados.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Footer aera -->
+
+  
+     <div class="rbt-progress-parent">
+        <svg class="rbt-back-circle svg-inner" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+
+    <!-- JS ============================================ -->
+     <script>
+        function navigateToExercises() {
+           window.location.href="all-questions.html";   
+        }
+
+        function navigateToContent() {
+             window.location.href="lesson.html";                         
+        }
+
+        function navigateToLiveClass() {         
+             window.location.href="video-lesson.html";
+        }
+
+        // Animação sutil nos cards
+        document.querySelectorAll('.action-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'rgba(255, 255, 255, 1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'rgba(255, 255, 255, 0.95)';
+            });
+        });
+
+        // Simulação de dados dinâmicos
+        function updateWelcomeMessage() {
+            const hours = new Date().getHours();
+            const welcomeTitle = document.querySelector('.welcome-title');
+            
+            if (hours < 12) {
+                welcomeTitle.textContent = 'Bom dia, João! ☀️';
+            } else if (hours < 18) {
+                welcomeTitle.textContent = 'Boa tarde, João! 🌞';
+            } else {
+                welcomeTitle.textContent = 'Boa noite, João! 🌙';
+            }
+        }
+
+        updateWelcomeMessage();
+    </script>
+
+    <!-- Modernizer JS -->
+    <script src="assets/js/vendor/modernizr.min.js"></script>
+    <!-- jQuery JS -->
+    <script src="assets/js/vendor/jquery.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="assets/js/vendor/bootstrap.min.js"></script>
+    <!-- sal.js -->
+    <script src="assets/js/vendor/sal.js"></script>
+    <!-- Dark Mode Switcher -->
+    <script src="assets/js/vendor/js.cookie.js"></script>
+    <script src="assets/js/vendor/jquery.style.switcher.js"></script>
+    <script src="assets/js/vendor/swiper.js"></script>
+    <script src="assets/js/vendor/jquery-appear.js"></script>
+    <script src="assets/js/vendor/odometer.js"></script>
+    <script src="assets/js/vendor/backtotop.js"></script>
+    <script src="assets/js/vendor/isotop.js"></script>
+    <script src="assets/js/vendor/imageloaded.js"></script>
+
+    <script src="assets/js/vendor/wow.js"></script>
+    <script src="assets/js/vendor/waypoint.min.js"></script>
+    <script src="assets/js/vendor/easypie.js"></script>
+    <script src="assets/js/vendor/text-type.js"></script>
+    <script src="assets/js/vendor/jquery-one-page-nav.js"></script>
+    <script src="assets/js/vendor/bootstrap-select.min.js"></script>
+    <script src="assets/js/vendor/jquery-ui.js"></script>
+    <script src="assets/js/vendor/magnify-popup.min.js"></script>
+    <script src="assets/js/vendor/paralax-scroll.js"></script>
+    <script src="assets/js/vendor/paralax.min.js"></script>
+    <script src="assets/js/vendor/countdown.js"></script>
+    <script src="assets/js/vendor/plyr.js"></script>
+    <script src="assets/js/vendor/jodit.min.js"></script>
+    <script src="assets/js/vendor/Sortable.min.js"></script>
+
+    <!-- Nav search JS -->
+    <script>
+        let expanded = false;
+        const input = document.getElementById("searchInput");
+    
+        function toggleSearch() {
+            if (!expanded) {
+                input.style.width = "200px";
+                input.style.opacity = "1";
+                input.focus();
+                expanded = true;
+            } else if (input.value.trim() !== "") {
+                submitSearch();
+            } else {
+                input.style.width = "0";
+                input.style.opacity = "0";
+                input.value = "";
+                expanded = false;
+            }
+        }
+    
+        function submitSearch() {
+            const query = input.value.trim();
+            if (query === "") return false;
+            alert("Pesquisando por: " + query);
+            return false;
+        }
+    
+        input.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                submitSearch();
+            }
+        });
+    </script>
+    
+    <!-- Main JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
