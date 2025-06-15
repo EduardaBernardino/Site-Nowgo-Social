@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscrição no Curso</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo/now go.png">
+    <link rel="stylesheet" href="assets/css/course-registration.css">   
+</head>
+<body>
+    <div class="background-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Inscreva-se agora</h1>
+            <p>Dê o próximo passo na sua carreira e transforme seu futuro com nossos cursos especializados</p>
+        </div>
+
+        <form id="registrationForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="firstName">Nome <span class="required">*</span></label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Sobrenome <span class="required">*</span></label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Telefone <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="age">Idade</label>
+                    <input type="number" id="age" name="age" min="16" max="100">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="course">Curso de Interesse <span class="required">*</span></label>
+                <select id="course" name="course" required>
+                    <option value="">Selecione um curso</option>
+                    <option value="web-dev">Data science</option>
+                    <option value="mobile-dev">Desenvolvimento Mobile</option>
+                    <option value="data-science">Ciência de Dados</option>
+                    <option value="ui-ux">UI/UX Design</option>
+                    <option value="digital-marketing">Python</option>
+                    <option value="cybersecurity">Cyber Security</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Nível de Experiência</label>
+                <select id="experience" name="experience">
+                    <option value="beginner">Iniciante</option>
+                    <option value="intermediate">Intermediário</option>
+                    <option value="advanced">Avançado</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="motivation">Por que deseja fazer este curso?</label>
+                <textarea id="motivation" name="motivation" placeholder="Conte-nos sobre suas motivações e objetivos..."></textarea>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="newsletter" name="newsletter">
+                <label for="newsletter">Desejo receber novidades e conteúdos exclusivos por e-mail</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">Aceito os <a href="#" style="color: var(--color-primary);">termos de uso</a> e <a href="#" style="color: var(--color-primary);">política de privacidade</a> <span class="required">*</span></label>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Confirmar Inscrição
+            </button>
+        </form>
+
+        <div id="successMessage" class="success-message">
+            <h3>🎉 Inscrição realizada com sucesso!</h3>
+            <p>Você receberá um e-mail de confirmação em breve com todos os detalhes do curso.</p>
+        </div>
+    </div>
+
+    
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simular envio do formulário
+            const form = this;
+            const submitBtn = form.querySelector('.submit-btn');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Animação de loading no botão
+            submitBtn.innerHTML = 'Processando...';
+            submitBtn.style.background = 'var(--color-white-dark)';
+            submitBtn.style.color = 'var(--color-darker)';
+            
+            setTimeout(() => {
+                form.style.display = 'none';
+                successMessage.style.display = 'block';
+                
+                // Reset form after 5 seconds
+                setTimeout(() => {
+                    form.style.display = 'block';
+                    successMessage.style.display = 'none';
+                    form.reset();
+                    submitBtn.innerHTML = 'Confirmar Inscrição';
+                    submitBtn.style.background = 'var(--gradient-dark)';
+                    submitBtn.style.color = 'white';
+                }, 5000);
+            }, 2000);
+        });
+
+        // Máscara para telefone
+        document.getElementById('phone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 11) {
+                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+            } else if (value.length >= 7) {
+                value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+            } else if (value.length >= 3) {
+                value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+            }
+            e.target.value = value;
+        });
+
+        // Animações nos inputs
+        const inputs = document.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
